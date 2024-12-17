@@ -1,26 +1,27 @@
 package main;
-public class Product {
-	private String[] attributes = {"id","name","price","quantity"};
+public class Package {
+	private String[] attributes = {"id","name","price","durationInDays"};
     private String id;
     private String name;
     private double price;
-    private int quantity;
+    private int durationInDays;
 
-    public Product(String id, String name, double price, int quantity) {
+    public Package(String id, String name, double price, int durationInDays) {
         this.id = id;
         this.name = name;
         this.price = price;
-        this.quantity = quantity;
+        this.durationInDays = durationInDays;
     }
 
     // Getters & Setters
     public String getId() { return id; }
     public String getName() { return name; }
     public double getPrice() { return price; }
-    public int getQuantity() { return quantity; }
+    public int getDurationInDays() { return durationInDays; }
     public String[] getAtt() { return attributes; };
+    
     @Override
     public String toString() {
-        return String.format("| %s | %s | %.2f | %d |", id, name, price, quantity);
+        return String.format("ID: %s | Name: %s | Price: %.2f | Duration: %d days", id, name, price, durationInDays);
     }
 }

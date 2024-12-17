@@ -1,61 +1,26 @@
 package main;
-import java.time.*;
 public class Member {
-	private String name;
-	private Integer age;
-	private String id;
-	private LocalDate firstSignUpDate;
-	private Package memPackage;
-	public Member(String name,Integer age,String ID) {
-		// TODO Auto-generated constructor stub
-		setName(name);
-		setAge(age);
-		setId(ID);
-		this.firstSignUpDate = LocalDate.now();
-	}
-	
-	public String getId() {
-		return id;
-	}
+	private String[] attributes = {"id","name","age","tier"};
+    private String id;
+    private String name;
+    private int age;
+    private String tier; // Gold, Silver, Base
+    
+    public Member(String id, String name, int age, String tier) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
+        this.tier = tier;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public String getId() { return id; }
+    public String getName() { return name; }
+    public int getAge() { return age; }
+    public String getTier() { return tier; }
+    public String[] getAtt() { return attributes; };
 
-	public Package getMemPackage() {
-		return memPackage;
-	}
-
-	public void setMemPackage(Package memPackage) {
-		this.memPackage = memPackage;
-	}
-
-	public String getTier() {
-		return "Basic";
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Integer getAge() {
-		return age;
-	}
-
-	public void setAge(Integer age) {
-		this.age = age;
-	}
-
-	public LocalDate getfirstSignUpDate() {
-		return firstSignUpDate;
-	}
-
-	public void setfirstSignUpDate(LocalDate date) {
-		this.firstSignUpDate = date;
-	}
-
+    @Override
+    public String toString() {
+        return String.format("| %s | %s | %d | %s |", id, name, age, tier);
+    }
 }

@@ -21,6 +21,6 @@ public class Product {
     public String[] getAtt() { return attributes; };
     @Override
     public String toString() {
-        return String.format("| %s | %s | %.2f | %d |", id, name, price, quantity);
+        return String.format("| %-10s | %-10s | %-10.2f | %-10d |", id, name, price, quantity);
     }
 }

@@ -12,7 +12,7 @@ public class Package {
         this.price = price;
         this.durationInDays = durationInDays;
     }
-
+    
     // Getters & Setters
     public String getId() { return id; }
     public String getName() { return name; }
@@ -22,6 +22,6 @@ public class Package {
     
     @Override
     public String toString() {
-        return String.format("ID: %s | Name: %s | Price: %.2f | Duration: %d days", id, name, price, durationInDays);
+        return String.format("| %-10s | %-10s | %-10.2f | %-10d days |", id, name, price, durationInDays);
     }
 }

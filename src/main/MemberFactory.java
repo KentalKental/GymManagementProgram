@@ -5,10 +5,10 @@ public class MemberFactory implements Factory<Member> {
     private static int memberCounter = 0;
 
     @Override
-    public Member create(int x) {
+    public Member create(int x, CrudService<Package> service) {
     	String input,name,tier,id;
-    	int age = -1;
-    	input = name = tier = id = "";
+    	int age = -1,pak = 1;
+    	input = name = tier = id  = "";
 	    System.out.print("Enter Member's Name [Enter '0' to exit]: ");
 	    input = name = scanner.nextLine();
 	        
@@ -17,7 +17,7 @@ public class MemberFactory implements Factory<Member> {
 	    age =Integer.parseInt(input = scanner.nextLine());
 	    
 	    if(input.equals("0")) return null;
-	
+	    
 	    String temp;
 	    do {
 	        System.out.print("Enter Membership Tier (Gold/Silver/Base) [Enter '0' to exit]: ");
@@ -34,8 +34,31 @@ public class MemberFactory implements Factory<Member> {
 	       	
 	    }while(!temp.equals("gold") && !temp.equals("silver") && !temp.equals("base"));
 	    id = (x != -1) ? id + (x+1):id + (++memberCounter);// -1 artinya create. bukan -1 artinya update
-    	
-        return new Member(id, name, age, tier);
+	    
+	    while(true) {
+		    int idx=0;
+		    if(!service.getAll().isEmpty()) {
+		    	for(Package item : service.getAll()) {
+		    		System.out.println((++idx) + ". " + item.getName());
+		    	}
+			    System.out.print("Which package would you subscribe to [1-"+ idx +"]: ");
+			    pak = Integer.parseInt(input = scanner.nextLine());
+			    if(input.equals("0")) return null;
+			    if(pak <0 || pak >idx) {
+			    	System.out.println("Input out of bounds !");
+			    	continue;
+			    }
+		        break;
+		    }
+		    else {
+		    	System.out.println("No packages available please add a package first !");
+		    	scanner.nextLine();
+		    	return null;
+		    }
+		    
+	    }
+	    Package pack = service.getAll().get(pak-1);
+        return new Member(id, name, age, tier, pack);
     }
 
 }

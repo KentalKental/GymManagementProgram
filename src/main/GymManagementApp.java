@@ -25,9 +25,9 @@ public class GymManagementApp {
             String choice = scanner.nextLine();
 
             switch (choice) {
-                case "1" -> menuController.showCrudMenu("Member", memberService, memberFactory);
-                case "2" -> menuController.showCrudMenu("Product", productService, productFactory);
-                case "3" -> menuController.showCrudMenu("Package",packageService, packageFactory);
+                case "1" -> menuController.showCrudMenu("Member", memberService, memberFactory,packageService);
+                case "2" -> menuController.showCrudMenu("Product", productService, productFactory,packageService);
+                case "3" -> menuController.showCrudMenu("Package",packageService, packageFactory,packageService);
                 case "4" -> {
                     System.out.println("Exiting... Goodbye!");
                     return;
